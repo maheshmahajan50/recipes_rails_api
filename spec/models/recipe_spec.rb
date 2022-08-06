@@ -31,7 +31,7 @@ RSpec.describe Recipe, type: :model do
     end
 
     it 'is invalid max length' do
-      recipe.time = 'a' * 256
+      recipe.time = 0
       expect(recipe).not_to be_valid
     end
   end

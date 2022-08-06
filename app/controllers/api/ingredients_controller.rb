@@ -45,4 +45,9 @@ class Api::IngredientsController < Api::BaseController
 
     @ingredients = Ingredient.all
   end
+
+  def unit_conversion
+    @ingredient = Ingredient.find(params[:id])
+    @amount = @ingredient.convert_to_unit(params[:unit_type]).round(2) if @ingredient rescue 0
+  end
 end

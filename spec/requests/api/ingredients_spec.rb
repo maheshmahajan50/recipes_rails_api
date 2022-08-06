@@ -284,4 +284,44 @@ RSpec.describe 'api/ingredients', type: :request do
       end
     end
   end
+
+  path '/api/ingredients/{id}/unit_conversion' do
+    get 'Unit conversion for ingredients' do
+      tags 'unit_conversion'
+      consumes 'application/json'
+      parameter name: 'id', in: :path, type: 'string', description: 'id'
+      parameter name: :unit_type, in: :query, schema: {
+        type: :object,
+        properties: {
+          unit_type: {
+            type: :string,
+            example: 'string'
+          }
+        }
+      }
+      response '200', 'unit_conversion' do
+        examples 'application/json' => {
+          'ingredients' => {
+            'id' => 'integer',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'unit' => 'float',
+            'unit' => 'enum_type',
+            'amount' => 'float',
+            'recipe_id' => 'foreign_key'
+          },
+
+          'error_message' => 'string'
+        }
+
+        let(:unit_type) { 'kilogram' }
+        let(:id) { create(:ingredient, amount: 1000, unit: 'gram').id }
+
+        run_test! do |response|
+          expect(response.status).to eq(200)
+          expect(JSON.parse(response.body)["amount"]).to eq(1.0)
+        end
+      end
+    end
+  end
 end
