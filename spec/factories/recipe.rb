@@ -6,7 +6,7 @@ FactoryBot.define do
 
     # jitera-anchor-dont-touch: columns
     difficulty { 'easy' }
-    time { Faker::Lorem.paragraph_by_chars(number: rand(0..255)) }
+    time { 10 }
     descriptions { Faker::Lorem.paragraph_by_chars(number: rand(0..1000)) }
     title { Faker::Lorem.paragraph_by_chars(number: rand(0..255)) }
   end
