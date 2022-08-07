@@ -23,40 +23,35 @@ RSpec.describe 'api/recipes', type: :request do
         examples 'application/json' => {
           'recipes' => {
             'id' => 'integer',
-
             'created_at' => 'datetime',
-
             'updated_at' => 'datetime',
-
             'title' => 'string',
-
             'descriptions' => 'text',
-
             'time' => 'integer',
-
             'difficulty' => 'enum_type',
-
             'category_id' => 'foreign_key',
-
             'ingredients' =>
-  [
-    {
-
-      'id' => 'integer',
-
-      'created_at' => 'datetime',
-
-      'updated_at' => 'datetime',
-
-      'unit' => 'enum_type',
-
-      'amount' => 'float',
-
-      'recipe_id' => 'foreign_key'
-
-    }
-  ],
-
+              [
+                {
+                  'id' => 'integer',
+                  'created_at' => 'datetime',
+                  'updated_at' => 'datetime',
+                  'unit' => 'enum_type',
+                  'amount' => 'float',
+                  'recipe_id' => 'foreign_key'
+                }
+              ],
+            'ratings' =>
+              [
+                {
+                  'id' => 'integer',
+                  'created_at' => 'datetime',
+                  'updated_at' => 'datetime',
+                  'rate' => 'integer',
+                  'user_id' => 'foreign_key',
+                  'recipe_id' => 'foreign_key'
+                }
+              ],
             'user_id' => 'foreign_key'
 
           },
@@ -216,30 +211,30 @@ RSpec.describe 'api/recipes', type: :request do
             'category_id' => 'foreign_key',
 
             'ingredients' =>
-  [
-    {
-
-      'id' => 'integer',
-
-      'created_at' => 'datetime',
-
-      'updated_at' => 'datetime',
-
-      'unit' => 'enum_type',
-
-      'amount' => 'float',
-
-      'recipe_id' => 'foreign_key'
-
-    }
-  ],
-
+              [
+                {
+                  'id' => 'integer',
+                  'created_at' => 'datetime',
+                  'updated_at' => 'datetime',
+                  'unit' => 'enum_type',
+                  'amount' => 'float',
+                  'recipe_id' => 'foreign_key'
+                }
+              ],
+            'ratings' =>
+              [
+                {
+                  'id' => 'integer',
+                  'created_at' => 'datetime',
+                  'updated_at' => 'datetime',
+                  'rate' => 'integer',
+                  'user_id' => 'foreign_key',
+                  'recipe_id' => 'foreign_key'
+                }
+              ],
             'user_id' => 'foreign_key'
-
           },
-
           'error_message' => 'string'
-
         }
 
         let(:resource_owner) { create(:user) }
@@ -409,53 +404,43 @@ RSpec.describe 'api/recipes', type: :request do
       response '200', 'filter' do
         examples 'application/json' => {
           'total_pages' => 'integer',
-
           'recipes' =>
         [
           {
-
             'id' => 'integer',
-
             'created_at' => 'datetime',
-
             'updated_at' => 'datetime',
-
             'title' => 'string',
-
             'descriptions' => 'text',
-
             'time' => 'integer',
-
             'difficulty' => 'enum_type',
-
             'category_id' => 'foreign_key',
-
             'ingredients' =>
-        [
-          {
-
-            'id' => 'integer',
-
-            'created_at' => 'datetime',
-
-            'updated_at' => 'datetime',
-
-            'unit' => 'enum_type',
-
-            'amount' => 'float',
-
-            'recipe_id' => 'foreign_key'
-
-          }
-        ],
-
+              [
+                {
+                  'id' => 'integer',
+                  'created_at' => 'datetime',
+                  'updated_at' => 'datetime',
+                  'unit' => 'enum_type',
+                  'amount' => 'float',
+                  'recipe_id' => 'foreign_key'
+                }
+              ],
+            'ratings' =>
+              [
+                {
+                  'id' => 'integer',
+                  'created_at' => 'datetime',
+                  'updated_at' => 'datetime',
+                  'rate' => 'integer',
+                  'user_id' => 'foreign_key',
+                  'recipe_id' => 'foreign_key'
+                }
+              ],
             'user_id' => 'foreign_key'
-
           }
         ],
-
           'error_message' => 'string'
-
         }
 
         let(:resource_owner) { create(:user) }

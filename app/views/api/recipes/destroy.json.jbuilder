@@ -18,6 +18,15 @@ if @error_message.blank?
       json.recipe_id ingredient.recipe_id
     end
 
+    json.ratings @recipe.ratings do |rating|
+      json.id rating.id
+      json.created_at rating.created_at
+      json.updated_at rating.updated_at
+      json.rate rating.rate
+      json.recipe_id rating.recipe_id
+      json.user_id rating.user_id
+    end
+
     json.user_id @recipe.user_id
   end
 else
